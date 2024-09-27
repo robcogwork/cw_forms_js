@@ -1,8 +1,16 @@
-// Funktion för att ändra textvärdet på knappar
+// Funktion för att ändra textvärdet på knappar Start sida både uppe och i submit
 function changeButtonValue(newValue) {
   // Välj alla knappar med den specifika CSS-klassen
   var buttons = document.querySelectorAll(
-    ".cwArea .cwShopPageEventInfo .cwButton.cwShopNavNext"
+    ".cwShopPageEventInfo .cwInfoArea .cwButton.cwShopNavNext"
+  );
+
+  var button = document.querySelector(
+    ".cwShopPageEventInfo .cwControlAreaTop .cwButton.cwShopNavNext"
+  );
+
+  var buttonAbort = document.querySelector(
+    ".cwShopPageEventInfo .cwControlAreaTop .cwButton.cwShopNavCart"
   );
 
   // Om knappar hittas, ändra värdet
@@ -10,13 +18,16 @@ function changeButtonValue(newValue) {
     buttons.forEach(function (button) {
       button.value = newValue;
     });
+    button.value = newValue;
+
+    buttonAbort.value = "Beställd";
   } else {
     console.log("Knappar hittades inte");
   }
 }
 
 // Exempelanvändning: ändra knapptexten
-changeButtonValue("Nya värdet ex. Prenumerera");
+changeButtonValue("Beställ");
 
 // ===================== Ändra text för "Kontrollera och bekräfta" knappar =====================
 function changeControlAndConfirmButtonValue(newValue) {
@@ -240,3 +251,18 @@ changeCancelAbortParagraphTextByContent(
   "Observera att du kommer att förbli inloggad även efter att du lämnat bokningen.",
   "Observera att du kommer att förbli inloggad även efter att du lämnat beställningssidan."
 );
+
+changeCancelAbortParagraphTextByContent("Avanmäld", "Beställning avbruten");
+
+// Ny paragraph test
+function changeParagraphTextByContent(currentText, newText) {
+  var paragraphs = document.querySelectorAll(".cwCheckoutItemProperty");
+  paragraphs.forEach(function (paragraph) {
+    if (paragraph.innerText.trim() === currentText) {
+      paragraph.innerText = newText;
+    }
+  });
+}
+
+// Ändra texten i <p> som innehåller "Avanmäld"
+changeParagraphTextByContent("Avanmäld", "Avbeställd");
