@@ -1,0 +1,16 @@
+{
+  "name": "stepbystepjs",
+  "version": "1.0.0",
+  "description": "A Project to manipulate form flow buttons, texts, etc\r Until we have the sollution done in the backend and add it so\r that the customer can change it by them selfs",
+  "main": "script.js",
+  "homepage": "https://robcogwork.github.io/stepbystepjs",
+  "scripts": {
+    "deploy": "gh-pages -d ."
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "gh-pages": "^6.1.1"
+  }
+}
