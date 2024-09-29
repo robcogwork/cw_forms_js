@@ -146,7 +146,7 @@ document.addEventListener("DOMContentLoaded", function () {
   // Ändra meddelandet om beräknad kostnad
   changeTotalAmountMsg("Beräknad kostnad för markerade artiklar: ");
 
-  // ===================== Ändra textinnehåll i en div =====================
+  // ===================== Ändra textinnehåll i en div ex sida kontrollera bekräfta step by step =====================
   function changeDivTextByContent(currentText, newText) {
     var divs = document.querySelectorAll(".cwFormCenter .cwInputArea div");
 
@@ -161,6 +161,11 @@ document.addEventListener("DOMContentLoaded", function () {
   changeDivTextByContent(
     "Eventuella upplysningar i samband med bokningen",
     "Eventuella upplysningar i samband med beställningen"
+  );
+
+  changeDivTextByContent(
+    "Skicka kopia av bokningsinformationen till annan e-postadress",
+    "Skicka kopia av beställningsinformationen till annan e-postadressn"
   );
 
   // ===================== Ändra rubrik för bekräftelsesida =====================
@@ -195,18 +200,23 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // ===================== Ändra text på "Avsluta beställning" knappar =====================
   function changeCancelAbortButtonText(newText) {
-    var button = document.querySelector(
-      ".cwShopPageConfirmAbort .cwControlAreaTop .cwButton.cwShopNavMain"
+    var buttons = document.querySelectorAll(
+      ".cwShopPageConfirmAbort .cwButton.cwShopNavMain"
     );
 
-    if (button) {
-      button.value = newText;
+    if (buttons.length > 0) {
+      buttons.forEach(function (button) {
+        if (button.tagName.toLowerCase() === "input") {
+          button.value = newText;
+        } else if (button.tagName.toLowerCase() === "button") {
+          button.innerText = newText;
+        }
+      });
     } else {
       console.log("Knappar för att avsluta hittades inte");
     }
   }
 
-  // Ändra text på knappen "Avsluta beställning"
   changeCancelAbortButtonText("Ja, avsluta beställningen");
 
   function changeCancelAbortButtonTopRightText(newText) {
