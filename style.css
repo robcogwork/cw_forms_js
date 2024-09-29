@@ -1,9 +1,5 @@
 @supports (-webkit-appearance: none) or (-moz-appearance: none) {
-  input {
-    display: none;
-  }
-
-  input[type="checkbox"] {
+  input[type="checkbox"][id^="question_1_choice"] {
     --active: #5628ee;
     --active-inner: #fff;
     --input-border: #cdd9ed;
@@ -31,7 +27,7 @@
   }
 
   /* Checkbox inner tick mark */
-  input[type="checkbox"]::after {
+  input[type="checkbox"][id^="question_1_choice"]::after {
     content: "";
     display: block;
     width: 5px;
@@ -48,12 +44,12 @@
   }
 
   /* Checked state */
-  input[type="checkbox"]:checked {
+  input[type="checkbox"][id^="question_1_choice"]:checked {
     background: var(--active);
     border-color: var(--active);
   }
 
-  input[type="checkbox"]:checked::after {
+  input[type="checkbox"][id^="question_1_choice"]:checked::after {
     opacity: 1;
     filter: drop-shadow(0 1px 2px var(--shadow-inner));
     transform: rotate(43deg);
@@ -67,4 +63,151 @@ label {
   display: flex;
   align-items: center;
   gap: 5px;
+}
+
+/* TESTAR MANIPULERA PRODUCT DELEN */
+.cwhc_Question:not(#cwq_1) {
+  display: grid;
+  grid-template-columns: 200px 400px; /* Left side for text, right side for image */
+  grid-template-areas:
+    "image title"
+    "image desc";
+  grid-gap: 20px; /* Space between content and image */
+  background-color: #f9f9f9;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 20px;
+  margin: 20px 0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Define the grid areas */
+.cwhc_Question:not(#cwq_1) h2 {
+  grid-area: title;
+  font-size: 1.5rem;
+  margin: 0 0 10px 0;
+  color: #333;
+  font-weight: bold;
+  grid-area: title;
+}
+
+.cwhc_Question:not(#cwq_1) p {
+  white-space: wrap !important;
+  grid-area: desc;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #555;
+  margin-bottom: 0;
+  grid-area: desc;
+}
+
+/* Image placement in the grid */
+.cwhc_Question:not(#cwq_1) > div {
+  grid-area: image;
+}
+
+.cwhc_Question:not(#cwq_1) img {
+  width: 150px;
+  height: auto;
+  border-radius: 8px;
+  display: block;
+}
+
+/* Responsive behavior */
+@media (max-width: 768px) {
+  .cwhc_Question:not(#cwq_1) {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "image"
+      "title"
+      "desc";
+  }
+
+  .cwhc_Question:not(#cwq_1) img {
+    width: 200px;
+  }
+}
+
+/* Styling for the compact question container */
+/* .cwhc_Question:not(#cwq_1):not(#cwq_).cwhc_Compact */
+.cwhc_Question.cwhc_Compact {
+  background-color: #f7f7f7;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  padding: 15px;
+  margin-bottom: 15px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  display: flex !important;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 600px;
+  margin: 20px auto;
+}
+
+/* Styling for the column labels */
+.cwhc_FormColumn1,
+.cwhc_FormColumn2 {
+  font-weight: bold;
+  color: #333 !important;
+  margin-right: 15px;
+  flex: 1;
+  min-width: 150px;
+}
+
+/* Styling for the input fields */
+.cwhc_FormColumn2 input[type="number"],
+.cwhc_FormColumn2 input[type="text"] {
+  width: 100%;
+  max-width: 180px;
+  padding: 10px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  background-color: #fff;
+  color: #333;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
+/* Focus styling for inputs */
+.cwhc_FormColumn2 input[type="number"]:focus,
+.cwhc_FormColumn2 input[type="text"]:focus {
+  outline: none;
+  border-color: #23c4f8;
+  box-shadow: 0 0 5px rgba(35, 196, 248, 0.3);
+}
+
+/* Styling for the item cost */
+.cwhc_ItemCost {
+  font-size: 0.9rem;
+  color: #666;
+  margin-left: 10px;
+  white-space: nowrap;
+}
+
+/* Clear float issues with the <br> */
+.cwhc_Question br {
+  clear: both;
+}
+
+/* Responsive layout for smaller screens */
+@media (max-width: 768px) {
+  .cwhc_Question.cwhc_Compact {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .cwhc_FormColumn1 {
+    margin-bottom: 10px;
+  }
+
+  .cwhc_FormColumn2 input {
+    width: 100%;
+  }
+
+  .cwhc_ItemCost {
+    margin-left: 0;
+    margin-top: 5px;
+  }
 }
