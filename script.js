@@ -271,67 +271,31 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Ändra texten i <p> som innehåller "Avanmäld"
   changeParagraphTextByContent("Avanmäld", "Avbeställd");
+
+  function changeErrorMessage(newText) {
+    // Check if an element with the class 'cwErrMsg' exists in the DOM
+    const errorElement = document.querySelector(".cwErrMsg");
+
+    if (errorElement) {
+      // If it exists, change the inner text to the new text
+      errorElement.textContent = newText;
+    }
+  }
+
+  // Example usage:
+  changeErrorMessage(
+    "Observera att du har tidigare beställningar som avser samma artikel."
+  );
+
+  // lägg till css link i head...
+
+  // Dynamically lägger till ny css i head
+  const link = document.createElement("link");
+  link.rel = "stylesheet";
+  link.href = "https://robcogwork.github.io/stepbystepjs/style.css";
+  document.head.appendChild(link);
 });
 
-function changeErrorMessage(newText) {
-  // Check if an element with the class 'cwErrMsg' exists in the DOM
-  const errorElement = document.querySelector(".cwErrMsg");
-
-  if (errorElement) {
-    // If it exists, change the inner text to the new text
-    errorElement.textContent = newText;
-  }
-}
-
-// Example usage:
-changeErrorMessage(
-  "Observera att du har tidigare beställningar som avser samma artikel."
-);
-
-const labels = document.querySelectorAll("label");
-
-// Loop through each label to modify the checkbox and insert a text input
-labels.forEach((label) => {
-  const checkbox = label.querySelector('input[type="checkbox"]');
-
-  if (checkbox) {
-    // Insert a text input after the checkbox
-    const textInput = document.createElement("input");
-    textInput.type = "text";
-    textInput.classList.add("dynamic-text-input"); // Add a class for styling
-    label.appendChild(textInput); // Append the text input to the label
-  }
-});
 // ändra styling för css
 
-/* const labels = document.querySelectorAll("label");
-labels.forEach((label) => {
-  const checkbox = label.querySelector('input[type="checkbox"]');
-if (checkbox) {
-    checkbox.style.width = "21px";
-checkbox.style.height = "21px";
-checkbox.style.borderRadius = "6px";
-checkbox.style.border = "1px solid #CDD9ED";
-checkbox.style.background = "#fff";
-checkbox.style.cursor = "pointer";
-checkbox.style.marginRight = "10px";
-checkbox.style.transition = "background .3s ease, border-color .3s ease";
-const textInput = document.createElement("input");
-textInput.type = "text";
-textInput.style.lineHeight = "21px";
-textInput.style.border = "0";
-textInput.style.margin = "0";
-textInput.style.padding = "0";
-textInput.style.fontSize = "12px";
-textInput.style.color = "#6C7486";
-textInput.style.background = "none";
-textInput.style.webkitAppearance = "none";
-textInput.style.mozAppearance = "none";
-textInput.style.outline = "none";
-textInput.style.width = "100%";
-textInput.style.fontFamily = "'Source Sans Pro', Arial";
-label.appendChild(textInput);
-    }
-  });
- */
 // END OF SCRIPT
