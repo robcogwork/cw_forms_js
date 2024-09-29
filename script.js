@@ -2,8 +2,6 @@
 
 // KOD SOM GÖR SÅ DET KÖRS NÄR DOM:EN ÄR LADDAD OCH INTE INNAN
 
-// valid event values
-
 document.addEventListener("DOMContentLoaded", function () {
   /*
       const link = document.createElement("link");
@@ -12,14 +10,14 @@ document.addEventListener("DOMContentLoaded", function () {
       document.head.appendChild(link);
     
       */
-
-  const validEvents = "227643";
+  // valid event values
+  const validEvent = "227643";
 
   // Get the current URL's query parameters
   const params = new URLSearchParams(window.location.search);
 
-  // Check if the 'event' parameter exists and if its value is in the validEvents array
-  if (params.has("event") && validEvents.includes(params.get("event"))) {
+  // Check if the 'event' parameter exists and if its value matches the validEvent
+  if (params.has("event") && params.get("event") === validEvent) {
     console.log("Valid event:", params.get("event"));
 
     //======================================================================================
