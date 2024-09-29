@@ -163,6 +163,11 @@ document.addEventListener("DOMContentLoaded", function () {
     "Eventuella upplysningar i samband med beställningen"
   );
 
+  changeDivTextByContent(
+    "Skicka kopia av bokningsinformationen till annan e-postadress",
+    "Skicka kopia av beställningsinformationen till annan e-postadressn"
+  );
+
   // ===================== Ändra rubrik för bekräftelsesida =====================
   function changeBookingConfirmationTitle(newTitle) {
     var articleTitle = document.querySelector(
