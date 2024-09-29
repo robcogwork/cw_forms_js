@@ -3,6 +3,13 @@
 // KOD SOM GÖR SÅ DET KÖRS NÄR DOM:EN ÄR LADDAD OCH INTE INNAN
 
 document.addEventListener("DOMContentLoaded", function () {
+  /*
+  const link = document.createElement("link");
+  link.rel = "stylesheet";
+  link.href = "https://robcogwork.github.io/stepbystepjs/style.css";
+  document.head.appendChild(link);
+
+  */
   // Your entire script goes inside this function
   function changeButtonValue(newValue) {
     // Välj alla knappar med den specifika CSS-klassen
@@ -288,12 +295,6 @@ document.addEventListener("DOMContentLoaded", function () {
   );
 
   // lägg till css link i head...
-
-  // Dynamically lägger till ny css i head
-  const link = document.createElement("link");
-  link.rel = "stylesheet";
-  link.href = "https://robcogwork.github.io/stepbystepjs/style.css";
-  document.head.appendChild(link);
 });
 
 // ändra styling för css
