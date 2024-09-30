@@ -21,3 +21,5 @@ that the customer can change it by them selfs
 ### changeTotalAmountMsg: Ändrar texten om beräknad kostnad på botten av sida 3.
 
 ### changeDivTextByContent: Ändrar textinnehållet
+
+// current save --- trying to fix the issues
