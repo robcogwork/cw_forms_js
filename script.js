@@ -76,6 +76,7 @@ document.addEventListener("DOMContentLoaded", function () {
         );
 
         // Run functions specific to these pages
+        changeShoppingCardText("Avanmäld", "Avbeställd");
         changeShoppingCardText(
           "Antagen till aktivitet",
           "Tack för din beställning"
