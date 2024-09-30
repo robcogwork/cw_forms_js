@@ -259,7 +259,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   function changeCancelAbortButtonTopRightText(newText) {
     var button = document.querySelector(
-      ".cwShopPageConfirmAbort .cwControlAreaTop .cwButton.cwShopNavCart"
+      ".cwShopPageConfirmAbort .cwControlAreaTop .cwShopNavCart"
     );
 
     if (button) {
@@ -268,6 +268,8 @@ document.addEventListener("DOMContentLoaded", function () {
       console.log("Knappar för att avsluta hittades inte");
     }
   }
+
+  changeCancelAbortButtonTopRightText("Beställt");
 
   function changeCancelAbortTitle(newTitle) {
     var titleElement = document.querySelector(
