@@ -336,94 +336,10 @@ document.addEventListener("DOMContentLoaded", function () {
         if (storedEvent === validEvent) {
           console.log("Valid event detected on page", currentPage);
 
-          // ===================== Ändra text på "Avsluta beställning" knappar =====================
-          function changeCancelAbortButtonText(newText) {
-            var buttons = document.querySelectorAll(
-              ".cwShopPageConfirmAbort .cwButton.cwShopNavMain"
-            );
-
-            if (buttons.length > 0) {
-              buttons.forEach(function (button) {
-                if (button.tagName.toLowerCase() === "input") {
-                  button.value = newText;
-                } else if (button.tagName.toLowerCase() === "button") {
-                  button.innerText = newText;
-                }
-              });
-            } else {
-              console.log("Knappar för att avsluta hittades inte");
-            }
-          }
-
-          changeCancelAbortButtonText("Ja, avsluta beställningen");
-
-          function changeCancelAbortButtonTopRightText(newText) {
-            var button = document.querySelector(
-              ".cwShopPageConfirmAbort .cwControlAreaTop .cwButton.cwShopNavCart"
-            );
-
-            if (button) {
-              button.value = newText;
-            } else {
-              console.log("Knappar för att avsluta hittades inte");
-            }
-          }
-
-          changeCancelAbortButtonTopRightText("Beställd");
-
-          // ===================== Ändra text för rubrik och paragraf i avslutningssektionen =====================
-          function changeCancelAbortTitle(newTitle) {
-            var titleElement = document.querySelector(
-              ".cwShopPageConfirmAbort .cwInputArea .cwShopPageName"
-            );
-
-            if (titleElement) {
-              titleElement.innerText = newTitle;
-            } else {
-              console.log("Rubrik för avslutning hittades inte");
-            }
-          }
-
-          changeCancelAbortTitle("Vill du avsluta beställningen?");
-
-          function changeCancelAbortParagraphTextByContent(
-            currentText,
-            newText
-          ) {
-            var paragraphs = document.querySelectorAll(
-              ".cwShopPageConfirmAbort .cwInputArea > p"
-            );
-
-            paragraphs.forEach(function (paragraph) {
-              if (paragraph.innerText.trim() === currentText) {
-                paragraph.innerText = newText;
-              }
-            });
-          }
-
-          // Exempel för att ändra text i paragrafer
-          changeCancelAbortParagraphTextByContent(
-            "Om du avslutar kan du fortfarande lägga till fler bokningar men måste då börja om från början.",
-            "Om du avslutar kan du fortfarande lägga till fler beställningar men måste då börja om från början."
-          );
-          changeCancelAbortParagraphTextByContent(
-            "Vill du ångra bokningar som du redan gjort klickar du på Bokat innan du avbryter bokningen.",
-            "Vill du ångra beställningar som du redan gjort klickar du på Beställd innan du avbryter beställningen."
-          );
-          changeCancelAbortParagraphTextByContent(
-            "Observera att du kommer att förbli inloggad även efter att du lämnat bokningen.",
-            "Observera att du kommer att förbli inloggad även efter att du lämnat beställningssidan."
-          );
-
-          changeCancelAbortParagraphTextByContent(
-            "Avanmäld",
-            "Beställning avbruten"
-          );
-
           // Function to change the shopping card text
           function changeShoppingCardText(currentText, newText) {
             var paragraphs = document.querySelectorAll(
-              ".cwShopPageShoppingChart p"
+              ".cwShopPageShoppingChart .cwCheckoutItemProperty"
             );
             paragraphs.forEach(function (paragraph) {
               if (paragraph.innerText.trim() === currentText) {
@@ -437,6 +353,19 @@ document.addEventListener("DOMContentLoaded", function () {
             "Antagen till aktivitet",
             "Tack för din beställning"
           );
+          function changeShoppingCartTitle(newTitle) {
+            var titleElement = document.querySelector(
+              ".cwShopPageShoppingChart .cwInputArea .cwShopPageName"
+            );
+
+            if (titleElement) {
+              titleElement.innerText = newTitle;
+            } else {
+              console.log("Rubrik för avslutning hittades inte");
+            }
+          }
+
+          changeShoppingCartTitle("Beställningar");
         } else {
           console.log("No valid event found in sessionStorage on this page.");
         }
