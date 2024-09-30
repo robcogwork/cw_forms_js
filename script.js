@@ -317,6 +317,20 @@ document.addEventListener("DOMContentLoaded", function () {
     changeErrorMessage(
       "Observera att du har tidigare beställningar som avser samma artikel."
     );
+
+    function changeShoppingCardText(currentText, newText) {
+      var paragraphs = document.querySelectorAll(".cwShopPageShoppingChart p");
+      paragraphs.forEach(function (paragraph) {
+        if (paragraph.innerText.trim() === currentText) {
+          paragraph.innerText = newText;
+        }
+      });
+    }
+    changeShoppingCardText(
+      "Antagen till aktivitet",
+      "Tack för din beställning"
+    );
+
     //==================================================================================
     // ==================== SLUT PÅ KODEN FÖR EVENTET - FORMULÄRET =====================
     //==================================================================================
