@@ -20,6 +20,9 @@ document.addEventListener("DOMContentLoaded", function () {
   if (params.has("event") && params.get("event") === validEvent) {
     console.log("Valid event:", params.get("event"));
 
+    // spara i session storage
+    sessionStorage.setItem("validEvent", validEvent);
+
     //======================================================================================
     // Kör denna kod om det är rätt event
     //=====================================================================================
@@ -318,19 +321,131 @@ document.addEventListener("DOMContentLoaded", function () {
       "Observera att du har tidigare beställningar som avser samma artikel."
     );
 
-    function changeShoppingCardText(currentText, newText) {
-      var paragraphs = document.querySelectorAll(".cwShopPageShoppingChart p");
-      paragraphs.forEach(function (paragraph) {
-        if (paragraph.innerText.trim() === currentText) {
-          paragraph.innerText = newText;
-        }
-      });
-    }
-    changeShoppingCardText(
-      "Antagen till aktivitet",
-      "Tack för din beställning"
-    );
+    //
+    function currentPageSession() {
+      // Pages where we need to check for the stored event
+      const validPages = ["7000", "9100"];
+      const currentPage = params.get("p");
 
+      // Check if we are on a valid page (p=7000 or p=9100)
+      if (validPages.includes(currentPage)) {
+        // Retrieve the event from sessionStorage
+        const storedEvent = sessionStorage.getItem("validEvent");
+
+        // If the event is stored and matches the valid event, run the specific code
+        if (storedEvent === validEvent) {
+          console.log("Valid event detected on page", currentPage);
+
+          // ===================== Ändra text på "Avsluta beställning" knappar =====================
+          function changeCancelAbortButtonText(newText) {
+            var buttons = document.querySelectorAll(
+              ".cwShopPageConfirmAbort .cwButton.cwShopNavMain"
+            );
+
+            if (buttons.length > 0) {
+              buttons.forEach(function (button) {
+                if (button.tagName.toLowerCase() === "input") {
+                  button.value = newText;
+                } else if (button.tagName.toLowerCase() === "button") {
+                  button.innerText = newText;
+                }
+              });
+            } else {
+              console.log("Knappar för att avsluta hittades inte");
+            }
+          }
+
+          changeCancelAbortButtonText("Ja, avsluta beställningen");
+
+          function changeCancelAbortButtonTopRightText(newText) {
+            var button = document.querySelector(
+              ".cwShopPageConfirmAbort .cwControlAreaTop .cwButton.cwShopNavCart"
+            );
+
+            if (button) {
+              button.value = newText;
+            } else {
+              console.log("Knappar för att avsluta hittades inte");
+            }
+          }
+
+          changeCancelAbortButtonTopRightText("Beställd");
+
+          // ===================== Ändra text för rubrik och paragraf i avslutningssektionen =====================
+          function changeCancelAbortTitle(newTitle) {
+            var titleElement = document.querySelector(
+              ".cwShopPageConfirmAbort .cwInputArea .cwShopPageName"
+            );
+
+            if (titleElement) {
+              titleElement.innerText = newTitle;
+            } else {
+              console.log("Rubrik för avslutning hittades inte");
+            }
+          }
+
+          changeCancelAbortTitle("Vill du avsluta beställningen?");
+
+          function changeCancelAbortParagraphTextByContent(
+            currentText,
+            newText
+          ) {
+            var paragraphs = document.querySelectorAll(
+              ".cwShopPageConfirmAbort .cwInputArea > p"
+            );
+
+            paragraphs.forEach(function (paragraph) {
+              if (paragraph.innerText.trim() === currentText) {
+                paragraph.innerText = newText;
+              }
+            });
+          }
+
+          // Exempel för att ändra text i paragrafer
+          changeCancelAbortParagraphTextByContent(
+            "Om du avslutar kan du fortfarande lägga till fler bokningar men måste då börja om från början.",
+            "Om du avslutar kan du fortfarande lägga till fler beställningar men måste då börja om från början."
+          );
+          changeCancelAbortParagraphTextByContent(
+            "Vill du ångra bokningar som du redan gjort klickar du på Bokat innan du avbryter bokningen.",
+            "Vill du ångra beställningar som du redan gjort klickar du på Beställd innan du avbryter beställningen."
+          );
+          changeCancelAbortParagraphTextByContent(
+            "Observera att du kommer att förbli inloggad även efter att du lämnat bokningen.",
+            "Observera att du kommer att förbli inloggad även efter att du lämnat beställningssidan."
+          );
+
+          changeCancelAbortParagraphTextByContent(
+            "Avanmäld",
+            "Beställning avbruten"
+          );
+
+          // Function to change the shopping card text
+          function changeShoppingCardText(currentText, newText) {
+            var paragraphs = document.querySelectorAll(
+              ".cwShopPageShoppingChart p"
+            );
+            paragraphs.forEach(function (paragraph) {
+              if (paragraph.innerText.trim() === currentText) {
+                paragraph.innerText = newText;
+              }
+            });
+          }
+
+          // Change the shopping card text for the specific case
+          changeShoppingCardText(
+            "Antagen till aktivitet",
+            "Tack för din beställning"
+          );
+        } else {
+          console.log("No valid event found in sessionStorage on this page.");
+        }
+      } else {
+        console.log("This is not a valid page for event check.");
+      }
+    }
+
+    //
     //==================================================================================
     // ==================== SLUT PÅ KODEN FÖR EVENTET - FORMULÄRET =====================
     //==================================================================================
