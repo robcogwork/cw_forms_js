@@ -4,12 +4,12 @@
 
 document.addEventListener("DOMContentLoaded", function () {
   /*
-        const link = document.createElement("link");
-        link.rel = "stylesheet";
-        link.href = "https://robcogwork.github.io/stepbystepjs/style.css";
-        document.head.appendChild(link);
-      
-        */
+          const link = document.createElement("link");
+          link.rel = "stylesheet";
+          link.href = "https://robcogwork.github.io/stepbystepjs/style.css";
+          document.head.appendChild(link);
+        
+          */
   // valid event values
   const validEvent = "227643";
 
