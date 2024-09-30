@@ -50,18 +50,7 @@ document.addEventListener("DOMContentLoaded", function () {
     changeCancelAbortButtonText("Ja, avsluta beställningen");
     changeCancelAbortButtonTopRightText("Beställd");
     changeCancelAbortTitle("Vill du avsluta beställningen?");
-    changeCancelAbortParagraphTextByContent(
-      "Om du avslutar kan du fortfarande lägga till fler bokningar men måste då börja om från början.",
-      "Om du avslutar kan du fortfarande lägga till fler beställningar men måste då börja om från början."
-    );
-    changeCancelAbortParagraphTextByContent(
-      "Vill du ångra bokningar som du redan gjort klickar du på Bokat innan du avbryter bokningen.",
-      "Vill du ångra beställningar som du redan gjort klickar du på Beställd innan du avbryter beställningen."
-    );
-    changeCancelAbortParagraphTextByContent(
-      "Observera att du kommer att förbli inloggad även efter att du lämnat bokningen.",
-      "Observera att du kommer att förbli inloggad även efter att du lämnat beställningssidan."
-    );
+
     changeParagraphTextByContent("Avanmäld", "Beställning avbruten");
     changeErrorMessage(
       "Observera att du har tidigare beställningar som avser samma artikel."
@@ -96,6 +85,18 @@ document.addEventListener("DOMContentLoaded", function () {
         changeCancelAbortTitle("Vill du avsluta beställningen?");
         changeCancelAbortButtonText("Ja, avsluta beställningen");
         changeButtonValue("Beställd");
+        changeCancelAbortParagraphTextByContent(
+          "Om du avslutar kan du fortfarande lägga till fler bokningar men måste då börja om från början.",
+          "Om du avslutar kan du fortfarande lägga till fler beställningar men måste då börja om från början."
+        );
+        changeCancelAbortParagraphTextByContent(
+          "Vill du ångra bokningar som du redan gjort klickar du på Bokat innan du avbryter bokningen.",
+          "Vill du ångra beställningar som du redan gjort klickar du på Beställd innan du avbryter beställningen."
+        );
+        changeCancelAbortParagraphTextByContent(
+          "Observera att du kommer att förbli inloggad även efter att du lämnat bokningen.",
+          "Observera att du kommer att förbli inloggad även efter att du lämnat beställningssidan."
+        );
       } else {
         console.log("No valid event found in sessionStorage on this page.");
       }
@@ -107,6 +108,18 @@ document.addEventListener("DOMContentLoaded", function () {
   // ======================= Helper Functions =======================
 
   // Function definitions remain the same
+
+  function changeCancelAbortParagraphTextByContent(currentText, newText) {
+    var paragraphs = document.querySelectorAll(
+      ".cwShopPageConfirmAbort .cwInputArea > p"
+    );
+
+    paragraphs.forEach(function (paragraph) {
+      if (paragraph.innerText.trim() === currentText) {
+        paragraph.innerText = newText;
+      }
+    });
+  }
   function changeButtonValue(newValue) {
     var buttons = document.querySelectorAll(
       ".cwShopPageEventInfo .cwInfoArea .cwButton.cwShopNavNext"
@@ -281,18 +294,6 @@ document.addEventListener("DOMContentLoaded", function () {
     } else {
       console.log("Rubrik för avslutning hittades inte");
     }
-  }
-
-  function changeCancelAbortParagraphTextByContent(currentText, newText) {
-    var paragraphs = document.querySelectorAll(
-      ".cwShopPageConfirmAbort .cwInputArea > p"
-    );
-
-    paragraphs.forEach(function (paragraph) {
-      if (paragraph.innerText.trim() === currentText) {
-        paragraph.innerText = newText;
-      }
-    });
   }
 
   function changeParagraphTextByContent(currentText, newText) {
