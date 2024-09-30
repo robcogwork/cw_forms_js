@@ -264,6 +264,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     changeCancelAbortTitle("Vill du avsluta beställningen?");
+    // ============= KANSKE BYTA PLATS ? =======================
 
     function changeCancelAbortParagraphTextByContent(currentText, newText) {
       var paragraphs = document.querySelectorAll(
@@ -353,6 +354,12 @@ document.addEventListener("DOMContentLoaded", function () {
             "Antagen till aktivitet",
             "Tack för din beställning"
           );
+
+          changeShoppingCardText(
+            "Bokning slutförd",
+            "Tack för din beställning"
+          );
+
           function changeShoppingCartTitle(newTitle) {
             var titleElement = document.querySelector(
               ".cwShopPageShoppingChart .cwInputArea .cwShopPageName"
@@ -366,6 +373,59 @@ document.addEventListener("DOMContentLoaded", function () {
           }
 
           changeShoppingCartTitle("Beställningar");
+
+          function changeCancelAbortTitle(newTitle) {
+            var titleElement = document.querySelector(
+              ".cwShopPageConfirmAbort .cwInputArea .cwShopPageName"
+            );
+
+            if (titleElement) {
+              titleElement.innerText = newTitle;
+            } else {
+              console.log("Rubrik för avslutning hittades inte");
+            }
+          }
+
+          changeCancelAbortTitle("Vill du avsluta beställningen?");
+
+          function changeCancelAbortButtonText(newText) {
+            var buttons = document.querySelectorAll(
+              ".cwShopPageConfirmAbort .cwButton.cwShopNavMain"
+            );
+
+            if (buttons.length > 0) {
+              buttons.forEach(function (button) {
+                if (button.tagName.toLowerCase() === "input") {
+                  button.value = newText;
+                } else if (button.tagName.toLowerCase() === "button") {
+                  button.innerText = newText;
+                }
+              });
+            } else {
+              console.log("Knappar för att avsluta hittades inte");
+            }
+          }
+
+          changeCancelAbortButtonText("Ja, avsluta beställningen");
+
+          // Exempelanvändning: ändra knapptexten
+          changeButtonValue("Beställ");
+
+          function changeButtonValue(newValue) {
+            // Select the button with the specific class `.cwShopNavCart`
+            var buttonAbort = document.querySelector(
+              ".cwShopPageConfirmAbort .cwControlAreaTop .cwButton.cwShopNavCart"
+            );
+
+            // If the button is found, change its value
+            if (buttonAbort) {
+              buttonAbort.value = newValue;
+            } else {
+              console.log("Button with class 'cwShopNavCart' not found.");
+            }
+          }
+
+          changeButtonValue("Beställd");
         } else {
           console.log("No valid event found in sessionStorage on this page.");
         }
