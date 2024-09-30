@@ -323,115 +323,112 @@ document.addEventListener("DOMContentLoaded", function () {
     );
 
     //
-    function currentPageSession() {
-      // Pages where we need to check for the stored event
-      const validPages = ["7000", "9100"];
-      const currentPage = params.get("p");
+    // Pages where we need to check for the stored event
+    const validPages = ["7000", "9100"];
+    const currentPage = params.get("p");
 
-      // Check if we are on a valid page (p=7000 or p=9100)
-      if (validPages.includes(currentPage)) {
-        // Retrieve the event from sessionStorage
-        const storedEvent = sessionStorage.getItem("validEvent");
+    // Check if we are on a valid page (p=7000 or p=9100)
+    if (validPages.includes(currentPage)) {
+      // Retrieve the event from sessionStorage
+      const storedEvent = sessionStorage.getItem("validEvent");
 
-        // If the event is stored and matches the valid event, run the specific code
-        if (storedEvent === validEvent) {
-          console.log("Valid event detected on page", currentPage);
+      // If the event is stored and matches the valid event, run the specific code
+      if (storedEvent === validEvent) {
+        console.log("Valid event detected on page", currentPage);
 
-          // Function to change the shopping card text
-          function changeShoppingCardText(currentText, newText) {
-            var paragraphs = document.querySelectorAll(
-              ".cwShopPageShoppingChart .cwCheckoutItemProperty"
-            );
-            paragraphs.forEach(function (paragraph) {
-              if (paragraph.innerText.trim() === currentText) {
-                paragraph.innerText = newText;
+        // Function to change the shopping card text
+        function changeShoppingCardText(currentText, newText) {
+          var paragraphs = document.querySelectorAll(
+            ".cwShopPageShoppingChart .cwCheckoutItemProperty"
+          );
+          paragraphs.forEach(function (paragraph) {
+            if (paragraph.innerText.trim() === currentText) {
+              paragraph.innerText = newText;
+            }
+          });
+        }
+
+        // Change the shopping card text for the specific case
+        changeShoppingCardText(
+          "Antagen till aktivitet",
+          "Tack för din beställning"
+        );
+
+        changeShoppingCardText("Bokning slutförd", "Tack för din beställning");
+
+        function changeShoppingCartTitle(newTitle) {
+          var titleElement = document.querySelector(
+            ".cwShopPageShoppingChart .cwInputArea .cwShopPageName"
+          );
+
+          if (titleElement) {
+            titleElement.innerText = newTitle;
+          } else {
+            console.log("Rubrik för avslutning hittades inte");
+          }
+        }
+
+        changeShoppingCartTitle("Beställningar");
+
+        function changeCancelAbortTitle(newTitle) {
+          var titleElement = document.querySelector(
+            ".cwShopPageConfirmAbort .cwInputArea .cwShopPageName"
+          );
+
+          if (titleElement) {
+            titleElement.innerText = newTitle;
+          } else {
+            console.log("Rubrik för avslutning hittades inte");
+          }
+        }
+
+        changeCancelAbortTitle("Vill du avsluta beställningen?");
+
+        function changeCancelAbortButtonText(newText) {
+          var buttons = document.querySelectorAll(
+            ".cwShopPageConfirmAbort .cwButton.cwShopNavMain"
+          );
+
+          if (buttons.length > 0) {
+            buttons.forEach(function (button) {
+              if (button.tagName.toLowerCase() === "input") {
+                button.value = newText;
+              } else if (button.tagName.toLowerCase() === "button") {
+                button.innerText = newText;
               }
             });
+          } else {
+            console.log("Knappar för att avsluta hittades inte");
           }
-
-          // Change the shopping card text for the specific case
-          changeShoppingCardText(
-            "Antagen till aktivitet",
-            "Tack för din beställning"
-          );
-
-          changeShoppingCardText(
-            "Bokning slutförd",
-            "Tack för din beställning"
-          );
-
-          function changeShoppingCartTitle(newTitle) {
-            var titleElement = document.querySelector(
-              ".cwShopPageShoppingChart .cwInputArea .cwShopPageName"
-            );
-
-            if (titleElement) {
-              titleElement.innerText = newTitle;
-            } else {
-              console.log("Rubrik för avslutning hittades inte");
-            }
-          }
-
-          changeShoppingCartTitle("Beställningar");
-
-          function changeCancelAbortTitle(newTitle) {
-            var titleElement = document.querySelector(
-              ".cwShopPageConfirmAbort .cwInputArea .cwShopPageName"
-            );
-
-            if (titleElement) {
-              titleElement.innerText = newTitle;
-            } else {
-              console.log("Rubrik för avslutning hittades inte");
-            }
-          }
-
-          changeCancelAbortTitle("Vill du avsluta beställningen?");
-
-          function changeCancelAbortButtonText(newText) {
-            var buttons = document.querySelectorAll(
-              ".cwShopPageConfirmAbort .cwButton.cwShopNavMain"
-            );
-
-            if (buttons.length > 0) {
-              buttons.forEach(function (button) {
-                if (button.tagName.toLowerCase() === "input") {
-                  button.value = newText;
-                } else if (button.tagName.toLowerCase() === "button") {
-                  button.innerText = newText;
-                }
-              });
-            } else {
-              console.log("Knappar för att avsluta hittades inte");
-            }
-          }
-
-          changeCancelAbortButtonText("Ja, avsluta beställningen");
-
-          // Exempelanvändning: ändra knapptexten
-          changeButtonValue("Beställ");
-
-          function changeButtonValue(newValue) {
-            // Select the button with the specific class `.cwShopNavCart`
-            var buttonAbort = document.querySelector(
-              ".cwShopPageConfirmAbort .cwControlAreaTop .cwButton.cwShopNavCart"
-            );
-
-            // If the button is found, change its value
-            if (buttonAbort) {
-              buttonAbort.value = newValue;
-            } else {
-              console.log("Button with class 'cwShopNavCart' not found.");
-            }
-          }
-
-          changeButtonValue("Beställd");
-        } else {
-          console.log("No valid event found in sessionStorage on this page.");
         }
+
+        changeCancelAbortButtonText("Ja, avsluta beställningen");
+
+        // Exempelanvändning: ändra knapptexten
+        changeButtonValue("Beställ");
+
+        function changeButtonValue(newValue) {
+          // Select the button with the specific class `.cwShopNavCart`
+          var buttonAbort = document.querySelector(
+            ".cwShopPageConfirmAbort .cwControlAreaTop .cwButton.cwShopNavCart"
+          );
+
+          // If the button is found, change its value
+          if (buttonAbort) {
+            buttonAbort.value = newValue;
+          } else {
+            console.log("Button with class 'cwShopNavCart' not found.");
+          }
+        }
+
+        changeButtonValue("Beställd");
+
+        // ===== CURRENT PAGE VALID EVENT ENDING ======================
       } else {
-        console.log("This is not a valid page for event check.");
+        console.log("No valid event found in sessionStorage on this page.");
       }
+    } else {
+      console.log("This is not a valid page for event check.");
     }
 
     //
