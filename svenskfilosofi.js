@@ -78,16 +78,12 @@ document.addEventListener("DOMContentLoaded", function () {
           "Valid event detected in sessionStorage on page",
           currentPage
         );
-
-        // Run functions specific to these pages
-
-        // Färdiga function ========================
         hideContinueShoppingButton();
         changeBookingConfirmationTitle("Tecknat");
         // =========================================
         changeShoppingCardText(
           "Antas då begärd avgift betalas",
-          "Börjar när betalning har mottagits"
+          "Premunationer börjar när betalning har mottagits."
         );
       } else {
         console.log("No valid event found in sessionStorage on this page.");
@@ -107,12 +103,17 @@ document.addEventListener("DOMContentLoaded", function () {
       ".cwShopPageEventInfo .cwControlAreaTop .cwButton.cwShopNavNext"
     );
 
+    var buttonConfirm = document.querySelector(
+      ".cwShopPageEventInfo .cwControlAreaTop .cwButton.cwShopNavCart"
+    );
+
     if (buttons.length > 0) {
       buttons.forEach(function (button) {
         button.value = newValue;
       });
       if (button) {
         button.value = newValue;
+        buttonConfirm.value = "Tecknat";
       }
     } else {
       console.log("Knappar hittades inte");
@@ -244,7 +245,7 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   // KONTROLLERA BEKRÄFTA
-  /* function changeControlAndConfirmButtonValue(newValue) {
+  function changeControlAndConfirmButtonValue(newValue) {
     var buttons = document.querySelectorAll(
       ".cwShopPageAddCommentAndConfirm .cwControlAreaTop .cwButton.cwShopNavCart"
     );
@@ -257,7 +258,6 @@ document.addEventListener("DOMContentLoaded", function () {
       console.log("Knappar hittades inte");
     }
   }
-    */
 
   function hideContinueShoppingButton() {
     const button = document.querySelector('input[name="continue_shopping"]');
@@ -268,7 +268,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Call the function to hide the button
 
-  changeControlAndConfirmButtonValue("");
+  changeControlAndConfirmButtonValue("Tecknat");
 
   function changeDivTextByContent(currentText, newText) {
     var divs = document.querySelectorAll(".cwFormCenter .cwInputArea div");
