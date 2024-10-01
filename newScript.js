@@ -57,6 +57,10 @@ document.addEventListener("DOMContentLoaded", function () {
       "Skicka kopia av bokningsinformationen till annan e-postadress",
       "Skicka kopia av information om prenumerationen till annan e-postadress"
     );
+
+    changeErrorMessage(
+      "Observera att du har tidigare prenumerationer med samma profil."
+    );
   }
 
   // Functions to check sessionStorage and apply changes on specific pages
@@ -326,5 +330,13 @@ document.addEventListener("DOMContentLoaded", function () {
         paragraph.innerText = newText;
       }
     });
+  }
+
+  function changeErrorMessage(newText) {
+    const errorElement = document.querySelector(".cwErrMsg");
+
+    if (errorElement) {
+      errorElement.textContent = newText;
+    }
   }
 });
