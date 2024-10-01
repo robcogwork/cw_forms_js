@@ -26,8 +26,6 @@ document.addEventListener("DOMContentLoaded", function () {
     // KÖRS ENDAST OM DET ÄR RÄTT EVENT NR
     // FÖRSTA SIDAN
 
-    hideOrganizer();
-
     changeButtonValue("Prenumerera");
 
     changeLabelByFor("termsAccepted", "Jag godkänner villkoren");
@@ -46,10 +44,9 @@ document.addEventListener("DOMContentLoaded", function () {
     );
 
     hideElements();
+    updateCwData();
 
     changePartakerTitleThirdPage("Prenumerant");
-
-    updateCwData();
 
     changePartakerRegFormTitle("Belopp");
 
@@ -141,10 +138,6 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  function hideOrganizer() {
-    document.querySelector(".cwDataArea p:first-of-type").style.display =
-      "none";
-  }
   // ====================================== FÖRSTA SIDA SLUT ====================================================
 
   // ============ ANDRA SIDAN I FLÖDET - PARTTAKER SELECT
