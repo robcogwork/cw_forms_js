@@ -240,7 +240,7 @@ document.addEventListener("DOMContentLoaded", function () {
   // KONTROLLERA BEKRÄFTA
   function changeControlAndConfirmButtonValue(newValue) {
     var buttons = document.querySelectorAll(
-      ".cwShopPageAddCommentAndConfirm .cwControlAreaTop .cwButton.cwShopNavCart"
+      ".cwControlAreaTop .cwButton.cwShopNavCart"
     );
 
     if (buttons.length > 0) {
