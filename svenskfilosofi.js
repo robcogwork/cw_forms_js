@@ -26,8 +26,6 @@ document.addEventListener("DOMContentLoaded", function () {
     // KÖRS ENDAST OM DET ÄR RÄTT EVENT NR
     // FÖRSTA SIDAN
 
-    hideOrganizer();
-
     changeButtonValue("Prenumerera");
 
     changeLabelByFor("termsAccepted", "Jag godkänner villkoren");
@@ -46,6 +44,8 @@ document.addEventListener("DOMContentLoaded", function () {
     );
 
     hideElements();
+
+    hideOrganizer();
 
     changePartakerTitleThirdPage("Prenumerant");
 
