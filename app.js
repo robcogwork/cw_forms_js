@@ -27,6 +27,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // FÖRSTA SIDAN
 
     changeButtonValue("Prenumerera");
+    changeButtonTopNav("Tecknat");
 
     changeLabelByFor("termsAccepted", "Jag godkänner villkoren");
     changeLabelByFor(
@@ -103,18 +104,25 @@ document.addEventListener("DOMContentLoaded", function () {
       ".cwShopPageEventInfo .cwControlAreaTop .cwButton.cwShopNavNext"
     );
 
-    var buttonConfirm = document.querySelector(
-      ".cwShopPageEventInfo .cwControlAreaTop .cwButton.cwShopNavCart"
-    );
-
     if (buttons.length > 0) {
       buttons.forEach(function (button) {
         button.value = newValue;
       });
       if (button) {
         button.value = newValue;
-        buttonConfirm.value = "Tecknat";
       }
+    } else {
+      console.log("Knappar hittades inte");
+    }
+  }
+
+  function changeButtonTopNav(newValue) {
+    var buttonConfirm = document.querySelector(
+      ".cwShopPageEventInfo .cwControlAreaTop .cwButton.cwShopNavCart"
+    );
+
+    if (buttonConfirm) {
+      buttonConfirm.value = newValue;
     } else {
       console.log("Knappar hittades inte");
     }
