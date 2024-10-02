@@ -25,7 +25,7 @@ document.addEventListener("DOMContentLoaded", function () {
   function runInitialEventFunctions() {
     // Your functions that should run when the event parameter is present
     changeButtonValue("Beställ");
-    changeControlAndConfirmButtonValue("Beställd");
+    changeControlAndConfirmButtonValue("Beställ");
     changeLabelByFor("termsAccepted", "Jag godkänner beställningsvillkoren");
     changeLabelByFor(
       "policyAccepted",
@@ -48,7 +48,7 @@ document.addEventListener("DOMContentLoaded", function () {
     changeBookingConfirmationTitle("Beställningsbekräftelse");
     changeTextInConfirmationBox("Bokning slutförd");
     changeCancelAbortButtonText("Ja, avsluta beställningen");
-    changeCancelAbortButtonTopRightText("Beställd");
+    changeCancelAbortButtonTopRightText("Beställ");
     changeCancelAbortTitle("Vill du avsluta beställningen?");
 
     changeParagraphTextByContent("Avanmäld", "Beställning avbruten");
