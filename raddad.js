@@ -29,6 +29,8 @@ document.addEventListener("DOMContentLoaded", function () {
     changeButtonValue("Ge en gåva");
     /*  changeButtonTopNav("Tecknat"); */
 
+    changeButtonConfirmValue("Donerat");
+
     changeLabelByFor("termsAccepted", "Jag godkänner villkoren");
     changeLabelByFor("policyAccepted", "Jag/vi godkänner användaravtalet");
 
@@ -91,6 +93,7 @@ document.addEventListener("DOMContentLoaded", function () {
           "Antagen till aktivitet",
           "Gåvan anses mottagen när gåvobeloppet har registrerats."
         );
+        changeShoppingCardText("Avanmäld", "Återkallad");
         changeBookingConfirmationTitle("Donerat");
       } else {
         console.log("No valid event found in sessionStorage on this page.");
@@ -101,6 +104,19 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   // ======================= Helper Functions =======================
+
+  function changeButtonConfirmValue(newValue) {
+    var buttonConfirm = document.querySelector(
+      ".cwControlAreaTop .cwButton.cwShopNavCart"
+    );
+
+    // Update buttonConfirm if it exists
+    if (buttonConfirm) {
+      buttonConfirm.value = newValue;
+    } else {
+      console.log("buttonConfirm not found");
+    }
+  }
   //============= FÖRSTA SIDAN! -KNAPPAR ==========================
   function changeButtonValue(newValue) {
     var buttons = document.querySelectorAll(
