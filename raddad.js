@@ -27,7 +27,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // FÖRSTA SIDAN
 
     changeButtonValue("Ge en gåva");
-    changeButtonTopNav("Tecknat");
+    /*  changeButtonTopNav("Tecknat"); */
 
     changeLabelByFor("termsAccepted", "Jag godkänner villkoren");
     changeLabelByFor("policyAccepted", "Jag/vi godkänner användaravtalet");
@@ -52,9 +52,14 @@ document.addEventListener("DOMContentLoaded", function () {
       "Eventuella upplysningar i samband med donationen"
     );
 
-    changeDivTextByContent(
+    /*  changeDivTextByContent(
       "Skicka kopia av bokningsinformationen till annan e-postadress",
-      "Skicka kopia av information om prenumerationen till annan e-postadress"
+      "Skicka kopia av information om donationen till annan e-postadress"
+    ); */
+
+    changeDivTextByContent(
+      "Skicka kopia av information om prenumerationen till annan e-postadress",
+      "Skicka kopia av information om donationen till annan e-postadress"
     );
   }
 
@@ -77,12 +82,10 @@ document.addEventListener("DOMContentLoaded", function () {
           "Valid event detected in sessionStorage on page",
           currentPage
         );
-        hideContinueShoppingButton();
-        changeBookingConfirmationTitle("Tecknat");
         // =========================================
         changeShoppingCardText(
-          "Antas då begärd avgift betalas",
-          "Premunationer börjar när betalning har mottagits."
+          "Antagen till aktivitet",
+          "Gåvan anses mottagen när gåvobeloppet har registrerats."
         );
       } else {
         console.log("No valid event found in sessionStorage on this page.");
@@ -113,7 +116,7 @@ document.addEventListener("DOMContentLoaded", function () {
       console.log("Knappar hittades inte");
     }
   }
-
+  /* 
   function changeButtonTopNav(newValue) {
     var buttonConfirm = document.querySelector(
       ".cwShopPageEventInfo .cwControlAreaTop .cwButton.cwShopNavCart"
@@ -124,7 +127,7 @@ document.addEventListener("DOMContentLoaded", function () {
     } else {
       console.log("Knappar hittades inte");
     }
-  }
+  } */
 
   function changeLabelByFor(forValue, newLabelText) {
     var label = document.querySelector(
@@ -178,7 +181,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // TREDJE SIDAN
 
-  function changePartakerTitleThirdPage(newTitle) {
+  /*   function changePartakerTitleThirdPage(newTitle) {
     var paragraph = document.querySelector(
       ".cwShopPagePartaker1Find .cwFormCenter .cwShopPageName"
     );
@@ -188,7 +191,7 @@ document.addEventListener("DOMContentLoaded", function () {
     } else {
       console.log("Rubrik för deltagare hittades inte");
     }
-  }
+  } */
 
   // FÖR FLER SIDOR SIDOPANELEN
 
@@ -227,7 +230,7 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   // KONTROLLERA BEKRÄFTA
-  function changeControlAndConfirmButtonValue(newValue) {
+  /*  function changeControlAndConfirmButtonValue(newValue) {
     var buttons = document.querySelectorAll(
       ".cwShopPageAddCommentAndConfirm .cwControlAreaTop .cwButton.cwShopNavCart"
     );
@@ -239,21 +242,21 @@ document.addEventListener("DOMContentLoaded", function () {
     } else {
       console.log("Knappar hittades inte");
     }
-  }
+  } */
 
-  function hideContinueShoppingButton() {
+  /*  function hideContinueShoppingButton() {
     const button = document.querySelector('input[name="continue_shopping"]');
     if (button) {
       button.style.display = "none";
     }
-  }
+  } */
 
   // Call the function to hide the button
 
-  changeControlAndConfirmButtonValue("Tecknat");
+  /*   changeControlAndConfirmButtonValue("Tecknat"); */
 
   function changeDivTextByContent(currentText, newText) {
-    var divs = document.querySelectorAll(".cwFormCenter .cwInputArea div");
+    var divs = document.querySelectorAll(".cwInputArea div"); // Target divs inside .cwInputArea
 
     divs.forEach(function (div) {
       if (div.innerText.trim() === currentText) {
@@ -277,30 +280,6 @@ document.addEventListener("DOMContentLoaded", function () {
   // ????????????? testa sista sidan kanske
 
   // OVANFÖR FÄRDIGA FUNKTIONER
-
-  function changePartakerRegFormTitle(newTitle) {
-    var titleElement = document.querySelector(
-      "#cwShopForm.cwShopPagePartaker1RegForm .cwShopPageName"
-    );
-
-    if (titleElement) {
-      titleElement.innerText = newTitle;
-    } else {
-      console.log("Titel för registreringsformulär hittades inte");
-    }
-  }
-
-  function changeBookingConfirmationTitle(newTitle) {
-    var articleTitle = document.querySelector(
-      "#cwShopForm.cwShopPageShoppingChart .cwFormCenter .cwColumnFull .cwShopPageName"
-    );
-
-    if (articleTitle) {
-      articleTitle.innerText = newTitle;
-    } else {
-      console.log("Bekräftelserubriken hittades inte");
-    }
-  }
 
   function changeShoppingCardText(currentText, newText) {
     var paragraphs = document.querySelectorAll(
