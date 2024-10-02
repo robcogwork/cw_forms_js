@@ -58,8 +58,12 @@ document.addEventListener("DOMContentLoaded", function () {
     ); */
 
     changeDivTextByContent(
-      "Skicka kopia av information om prenumerationen till annan e-postadress",
+      "Skicka kopia av bokningsinformationen till annan e-postadress",
       "Skicka kopia av information om donationen till annan e-postadress"
+    );
+
+    changeErrorMessage(
+      "Observera att du har tidigare donationer som avser samma gåvobelopp."
     );
   }
 
@@ -87,6 +91,7 @@ document.addEventListener("DOMContentLoaded", function () {
           "Antagen till aktivitet",
           "Gåvan anses mottagen när gåvobeloppet har registrerats."
         );
+        changeBookingConfirmationTitle("Donerat");
       } else {
         console.log("No valid event found in sessionStorage on this page.");
       }
@@ -255,6 +260,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
   /*   changeControlAndConfirmButtonValue("Tecknat"); */
 
+  function changeErrorMessage(newText) {
+    const errorElement = document.querySelector(".cwErrMsg");
+
+    if (errorElement) {
+      errorElement.textContent = newText;
+    }
+  }
+
   function changeDivTextByContent(currentText, newText) {
     var divs = document.querySelectorAll(".cwInputArea div"); // Target divs inside .cwInputArea
 
@@ -265,21 +278,17 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  // NICLAS FIX FÖR STÄNG KNAPPEN ?? fungerar ej
+  function changeBookingConfirmationTitle(newTitle) {
+    var articleTitle = document.querySelector(
+      "#cwShopForm.cwShopPageShoppingChart .cwFormCenter .cwColumnFull .cwShopPageName"
+    );
 
-  function removeInputClose() {
-    document
-      .querySelectorAll('input[name="close"]')
-      .forEach(function (inputClose) {
-        inputClose.setAttribute("name", "shopAbortConfirmed");
-      });
+    if (articleTitle) {
+      articleTitle.innerText = newTitle;
+    } else {
+      console.log("Bekräftelserubriken hittades inte");
+    }
   }
-
-  removeInputClose();
-
-  // ????????????? testa sista sidan kanske
-
-  // OVANFÖR FÄRDIGA FUNKTIONER
 
   function changeShoppingCardText(currentText, newText) {
     var paragraphs = document.querySelectorAll(
