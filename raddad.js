@@ -95,6 +95,21 @@ document.addEventListener("DOMContentLoaded", function () {
         );
         changeShoppingCardText("Avanmäld", "Återkallad");
         changeBookingConfirmationTitle("Donerat");
+        changeCancelAbortTitle("Vill du verkligen avbryta donationen?");
+        changeCancelAbortButtonTopRightText("Donerat");
+        changeCancelAbortButtonText("Ja, avbryt donationen!");
+        changeCancelAbortParagraphTextByContent(
+          "Om du avbryter bokningen kommer bokningar som du ännu inte fullföljt att gå förlorade. Redan slutförda bokningar kommer däremot inte att påverkas.",
+          "Om du avbryter donationen kommer donationer som du ännu inte fullföljt att gå förlorade. Redan slutförda donationer kommer däremot inte att påverkas."
+        );
+        changeCancelAbortParagraphTextByContent(
+          "Vill du ångra bokningar som du redan gjort klickar du på Bokat innan du avbryter bokningen. Om bokningen redan blivit bindande måste du dock kontakta arrangören för att ångra bokningen.",
+          "Vill du ångra donationer som du redan gjort klickar du på Donerat innan du avbryter donationen."
+        );
+        changeCancelAbortParagraphTextByContent(
+          "Observera att du kommer att förbli inloggad även efter att du lämnat bokningen.",
+          ""
+        );
       } else {
         console.log("No valid event found in sessionStorage on this page.");
       }
@@ -310,6 +325,60 @@ document.addEventListener("DOMContentLoaded", function () {
     var paragraphs = document.querySelectorAll(
       ".cwShopPageShoppingChart .cwCheckoutItemProperty"
     );
+    paragraphs.forEach(function (paragraph) {
+      if (paragraph.innerText.trim() === currentText) {
+        paragraph.innerText = newText;
+      }
+    });
+  }
+
+  function changeCancelAbortButtonText(newText) {
+    var buttons = document.querySelectorAll(
+      ".cwShopPageConfirmAbort .cwButton.cwShopNavMain"
+    );
+
+    if (buttons.length > 0) {
+      buttons.forEach(function (button) {
+        if (button.tagName.toLowerCase() === "input") {
+          button.value = newText;
+        } else if (button.tagName.toLowerCase() === "button") {
+          button.innerText = newText;
+        }
+      });
+    } else {
+      console.log("Knappar för att avsluta hittades inte");
+    }
+  }
+
+  function changeCancelAbortButtonTopRightText(newText) {
+    var button = document.querySelector(
+      ".cwShopPageConfirmAbort .cwControlAreaTop .cwShopNavCart"
+    );
+
+    if (button) {
+      button.value = newText;
+    } else {
+      console.log("Knappar för att avsluta hittades inte");
+    }
+  }
+
+  function changeCancelAbortTitle(newTitle) {
+    var titleElement = document.querySelector(
+      ".cwShopPageConfirmAbort .cwInputArea .cwShopPageName"
+    );
+
+    if (titleElement) {
+      titleElement.innerText = newTitle;
+    } else {
+      console.log("Rubrik för avslutning hittades inte");
+    }
+  }
+
+  function changeCancelAbortParagraphTextByContent(currentText, newText) {
+    var paragraphs = document.querySelectorAll(
+      ".cwShopPageConfirmAbort .cwInputArea > p"
+    );
+
     paragraphs.forEach(function (paragraph) {
       if (paragraph.innerText.trim() === currentText) {
         paragraph.innerText = newText;
