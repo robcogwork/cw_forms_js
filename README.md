@@ -4,6 +4,8 @@ A Project to manipulate form flow buttons, texts, etc
 Until we have the sollution done in the backend and add it so
 that the customer can change it by them selfs
 
+### This project is only used to test the code before adding it to cw document archive
+
 ## Förklaringar på svenska:
 
 ### changeButtonValue: Ändrar värdet på alla knappar med en viss klass.
@@ -20,4 +22,10 @@ that the customer can change it by them selfs
 
 ### changeTotalAmountMsg: Ändrar texten om beräknad kostnad på botten av sida 3.
 
-### changeDivTextByContent: Ändrar textinnehållet
+### changeDivTextByContent: Ändrar
+
+## Klara formulär
+
+- Step by step
+- SvenskFilosofi
+- Rädda djurgården

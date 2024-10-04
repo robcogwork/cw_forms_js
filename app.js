@@ -275,8 +275,6 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
-  // Call the function to hide the button
-
   changeControlAndConfirmButtonValue("Tecknat");
 
   function changeDivTextByContent(currentText, newText) {
@@ -291,15 +289,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // NICLAS FIX FÖR STÄNG KNAPPEN ?? fungerar ej
 
-  function removeInputClose() {
+  /* function removeInputClose() {
     document
       .querySelectorAll('input[name="close"]')
       .forEach(function (inputClose) {
         inputClose.setAttribute("name", "shopAbortConfirmed");
-      });
-  }
-
-  removeInputClose();
+         });
+     }
+  removeInputClose(); */
 
   // ????????????? testa sista sidan kanske
 

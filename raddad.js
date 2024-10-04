@@ -3,6 +3,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
   const params = new URLSearchParams(window.location.search);
 
+  changeParagraphTextByContent(
+    "Nytt eller förnyat medlemskap söks för en individ i taget. Vill du anmäla fler medlemmar kommer du att ha möjlighet att göra det i ett senare steg.",
+    "Nytt eller förnyat medlemskap anmäls för en individ i taget. Vill du anmäla fler medlemmar kommer du att ha möjlighet att göra det i ett senare steg."
+  );
+
   if (params.has("event") && params.get("event") === validEvent) {
     console.log("Valid event detected and stored:", params.get("event"));
     sessionStorage.setItem("validEvent", validEvent);
@@ -303,4 +308,18 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     });
   }
+
+  function changeParagraphTextByContent(currentText, newText) {
+    var paragraphs = document.querySelectorAll("#cwShopForm .cwInputArea > p");
+    paragraphs.forEach(function (paragraph) {
+      if (paragraph.innerText.trim() === currentText) {
+        paragraph.innerText = newText;
+      }
+    });
+  }
+
+  changeParagraphTextByContent(
+    "Nytt eller förnyat medlemskap söks för en individ i taget. Vill du anmäla fler medlemmar kommer du att ha möjlighet att göra det i ett senare steg.",
+    "Nytt eller förnyat medlemskap anmäls för en individ i taget. Vill du anmäla fler medlemmar kommer du att ha möjlighet att göra det i ett senare steg."
+  );
 });
