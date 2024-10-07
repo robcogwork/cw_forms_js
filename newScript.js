@@ -25,9 +25,11 @@ document.addEventListener("DOMContentLoaded", function () {
   function runInitialEventFunctions() {
     // KÖRS ENDAST OM DET ÄR RÄTT EVENT NR
     // FÖRSTA SIDAN
+    updateRegStatusText();
 
+    changeButtonTopNav("Tecknat");
     changeButtonValue("Prenumerera");
-
+    changeButtonTopNav("Tecknat");
     changeLabelByFor("termsAccepted", "Jag godkänner villkoren");
     changeLabelByFor(
       "policyAccepted",
@@ -66,7 +68,7 @@ document.addEventListener("DOMContentLoaded", function () {
   // Functions to check sessionStorage and apply changes on specific pages
   function checkSessionAndRunPageSpecificFunctions() {
     // Pages where we need to check for the stored event
-    const validPages = ["7000", "9100"];
+    const validPages = ["7000", "9100", "8040"];
     const currentPage = params.get("p");
 
     // Check if we are on a valid page (p=7000 or p=9100)
@@ -86,6 +88,7 @@ document.addEventListener("DOMContentLoaded", function () {
           "Antas då begärd avgift betalas",
           "Premunationer börjar när betalning har mottagits."
         );
+        changePaySubmitButtonText();
       } else {
         console.log("No valid event found in sessionStorage on this page.");
       }
@@ -217,6 +220,16 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // ===================== FÖR FLER SIDOR SIDOPANELEN ====================
 
+  function updateRegStatusText() {
+    const regStatusElement = document.querySelector(".cwRegStatus");
+
+    if (regStatusElement) {
+      regStatusElement.textContent = "Prenumeration";
+    } else {
+      console.error('Element with class "cwRegStatus" not found.');
+    }
+  }
+
   function updateCwData() {
     const cwDataNames = document.querySelectorAll(".cwData .cwDataName");
 
@@ -337,6 +350,23 @@ document.addEventListener("DOMContentLoaded", function () {
 
     if (errorElement) {
       errorElement.textContent = newText;
+    }
+  }
+  function changeShoppingCardText(currentText, newText) {
+    var paragraphs = document.querySelectorAll(
+      ".cwShopPageShoppingChart .cwCheckoutItemProperty"
+    );
+    paragraphs.forEach(function (paragraph) {
+      if (paragraph.innerText.trim() === currentText) {
+        paragraph.innerText = newText;
+      }
+    });
+  }
+
+  function changePaySubmitButtonText() {
+    const button = document.querySelector(".cwButton.cwShopNavMain");
+    if (button && button.textContent.trim() === "Visa bokningsöversikt") {
+      button.textContent = "Visa prenumerationsöversikt";
     }
   }
 });
