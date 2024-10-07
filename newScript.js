@@ -81,6 +81,7 @@ document.addEventListener("DOMContentLoaded", function () {
           "Valid event detected in sessionStorage on page",
           currentPage
         );
+        changeButtonTopNav("Tecknat");
         hideContinueShoppingButton();
         changeBookingConfirmationTitle("Tecknat");
         changeShoppingCardText(
