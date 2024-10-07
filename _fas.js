@@ -1,3 +1,4 @@
+/*
 <div class="custom-alert" style="display: none;">E-post kopierad!</div>
 <script>
 document.addEventListener('DOMContentLoaded', function () {
@@ -236,7 +237,7 @@ const organizations = [
   }
 
   organizations.forEach(org => {
-     // Conditionally create buttons based on whether the values are empty
+     
   const emailButton = org.emailGeneral
   ? `<div class="wp-block-button copy-button cwHittaBtn">
        <a class="wp-block-button__link wp-element-button" 
@@ -349,3 +350,5 @@ if (mToOElement) {
         }
  });
 </script>
+
+*/
