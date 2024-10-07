@@ -68,7 +68,7 @@ document.addEventListener("DOMContentLoaded", function () {
   // Functions to check sessionStorage and apply changes on specific pages
   function checkSessionAndRunPageSpecificFunctions() {
     // Pages where we need to check for the stored event
-    const validPages = ["7000", "9100"];
+    const validPages = ["7000", "9100", "8040"];
     const currentPage = params.get("p");
 
     // Check if we are on a valid page (p=7000 or p=9100)
@@ -87,8 +87,9 @@ document.addEventListener("DOMContentLoaded", function () {
         // =========================================
         changeShoppingCardText(
           "Antas då begärd avgift betalas",
-          "Premunationer börjar när betalning har mottagits."
+          "Prenumeration börjar när betalning har mottagits."
         );
+        changePaySubmitButtonText();
       } else {
         console.log("No valid event found in sessionStorage on this page.");
       }
@@ -109,6 +110,32 @@ document.addEventListener("DOMContentLoaded", function () {
       console.error('Element with class "cwRegStatus" not found.');
     }
   }
+
+  function updateCwData() {
+    const cwDataNames = document.querySelectorAll(".cwData .cwDataName");
+
+    cwDataNames.forEach(function (item) {
+      // Ta bort "Arrangör" och "Svensk filosofi"
+      if (
+        item.textContent === "Arrangör" ||
+        item.nextElementSibling.textContent === "Svensk filosofi"
+      ) {
+        item.style.display = "none"; // göm "Arrangör"
+        item.nextElementSibling.style.display = "none"; // göm "Svensk filosofi"
+      }
+
+      // byt "Aktivitet/artikel" mot "Prenumeration"
+      if (item.textContent.includes("Aktivitet/artikel")) {
+        item.textContent = "Prenumeration";
+      }
+
+      // Byt "Deltagare (Ändra)" mot "Prenumerant"
+      if (item.textContent.includes("Deltagare")) {
+        item.innerHTML = item.innerHTML.replace("Deltagare", "Prenumerant");
+      }
+    });
+  }
+
   //============= FÖRSTA SIDAN! -KNAPPAR ==========================
   function changeButtonValue(newValue) {
     var buttons = document.querySelectorAll(
@@ -132,7 +159,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   function changeButtonTopNav(newValue) {
     var buttonConfirm = document.querySelector(
-      ".cwShopPageEventInfo .cwControlAreaTop .cwButton.cwShopNavCart"
+      ".cwControlAreaTop .cwButton.cwShopNavCart"
     );
 
     if (buttonConfirm) {
@@ -224,33 +251,6 @@ document.addEventListener("DOMContentLoaded", function () {
     } else {
       console.log("Rubrik för deltagare hittades inte");
     }
-  }
-
-  // FÖR FLER SIDOR SIDOPANELEN
-
-  function updateCwData() {
-    const cwDataNames = document.querySelectorAll(".cwData .cwDataName");
-
-    cwDataNames.forEach(function (item) {
-      // Ta bort "Arrangör" och "Svensk filosofi"
-      if (
-        item.textContent === "Arrangör" ||
-        item.nextElementSibling.textContent === "Svensk filosofi"
-      ) {
-        item.style.display = "none"; // göm "Arrangör"
-        item.nextElementSibling.style.display = "none"; // göm "Svensk filosofi"
-      }
-
-      // byt "Aktivitet/artikel" mot "Prenumeration"
-      if (item.textContent.includes("Aktivitet/artikel")) {
-        item.textContent = "Prenumeration";
-      }
-
-      // Byt "Deltagare (Ändra)" mot "Prenumerant"
-      if (item.textContent.includes("Deltagare")) {
-        item.innerHTML = item.innerHTML.replace("Deltagare", "Prenumerant");
-      }
-    });
   }
 
   // Fjärde sidan i flödet "bokningsformulär"
@@ -349,5 +349,12 @@ document.addEventListener("DOMContentLoaded", function () {
         paragraph.innerText = newText;
       }
     });
+  }
+
+  function changePaySubmitButtonText() {
+    const button = document.querySelector(".cwButton.cwShopNavMain");
+    if (button && button.textContent.trim() === "Visa bokningsöversikt") {
+      button.textContent = "Visa prenumerationsöversikt";
+    }
   }
 });
