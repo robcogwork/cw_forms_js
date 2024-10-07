@@ -26,6 +26,9 @@ document.addEventListener("DOMContentLoaded", function () {
     // KÖRS ENDAST OM DET ÄR RÄTT EVENT NR
     // FÖRSTA SIDAN
 
+    // KÖRS PÅ ALLA SIDOR
+    updateRegStatusText();
+
     changeButtonValue("Prenumerera");
     changeButtonTopNav("Tecknat");
 
@@ -95,6 +98,17 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   // ======================= Helper Functions =======================
+
+  //======================= ALLA SIDOR =============================
+  function updateRegStatusText() {
+    const regStatusElement = document.querySelector(".cwRegStatus");
+
+    if (regStatusElement) {
+      regStatusElement.textContent = "Prenumeration";
+    } else {
+      console.error('Element with class "cwRegStatus" not found.');
+    }
+  }
   //============= FÖRSTA SIDAN! -KNAPPAR ==========================
   function changeButtonValue(newValue) {
     var buttons = document.querySelectorAll(
