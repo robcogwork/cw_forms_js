@@ -81,7 +81,7 @@ document.addEventListener("DOMContentLoaded", function () {
           "Valid event detected in sessionStorage on page",
           currentPage
         );
-        changeButtonTopNav("Tecknat");
+        changeControlAndConfirmButtonValue("Tecknat");
         hideContinueShoppingButton();
         changeBookingConfirmationTitle("Tecknat");
         changeShoppingCardText(
@@ -304,7 +304,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   function changeControlAndConfirmButtonValue(newValue) {
     var buttons = document.querySelectorAll(
-      ".cwShopPageAddCommentAndConfirm .cwControlAreaTop .cwButton.cwShopNavCart"
+      ".cwControlAreaTop .cwButton.cwShopNavCart"
     );
 
     if (buttons.length > 0) {
@@ -317,7 +317,6 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   // Call the function to change the button value
-  changeControlAndConfirmButtonValue("Tecknat");
 
   // =================== FIX FÖR "STÄNG" KNAPPEN =======================
 
