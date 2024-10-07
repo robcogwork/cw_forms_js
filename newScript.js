@@ -29,7 +29,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     changeButtonTopNav("Tecknat");
     changeButtonValue("Prenumerera");
-    changeButtonTopNav("Tecknat");
     changeLabelByFor("termsAccepted", "Jag godkänner villkoren");
     changeLabelByFor(
       "policyAccepted",
@@ -108,7 +107,7 @@ document.addEventListener("DOMContentLoaded", function () {
     );
 
     var buttonConfirm = document.querySelector(
-      ".cwShopPageEventInfo .cwControlAreaTop .cwButton.cwShopNavCart"
+      ".cwControlAreaTop .cwButton.cwShopNavCart"
     );
 
     // Update all buttons in the .cwInfoArea
@@ -219,6 +218,18 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   // ===================== FÖR FLER SIDOR SIDOPANELEN ====================
+
+  function changeButtonTopNav(newValue) {
+    var buttonConfirm = document.querySelector(
+      ".cwControlAreaTop .cwButton.cwShopNavCart"
+    );
+
+    if (buttonConfirm) {
+      buttonConfirm.value = newValue;
+    } else {
+      console.log("Knappar hittades inte");
+    }
+  }
 
   function updateRegStatusText() {
     const regStatusElement = document.querySelector(".cwRegStatus");
@@ -351,16 +362,6 @@ document.addEventListener("DOMContentLoaded", function () {
     if (errorElement) {
       errorElement.textContent = newText;
     }
-  }
-  function changeShoppingCardText(currentText, newText) {
-    var paragraphs = document.querySelectorAll(
-      ".cwShopPageShoppingChart .cwCheckoutItemProperty"
-    );
-    paragraphs.forEach(function (paragraph) {
-      if (paragraph.innerText.trim() === currentText) {
-        paragraph.innerText = newText;
-      }
-    });
   }
 
   function changePaySubmitButtonText() {
