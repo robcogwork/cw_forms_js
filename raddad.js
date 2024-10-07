@@ -1,33 +1,31 @@
 document.addEventListener("DOMContentLoaded", function () {
-  // valid event value
   const validEvent = "224133";
 
-  // Get the current URL's query parameters
   const params = new URLSearchParams(window.location.search);
 
-  // Store the event in sessionStorage if present in the URL
+  changeParagraphTextByContent(
+    "Nytt eller förnyat medlemskap söks för en individ i taget. Vill du anmäla fler medlemmar kommer du att ha möjlighet att göra det i ett senare steg.",
+    "Nytt eller förnyat medlemskap anmäls för en individ i taget. Vill du anmäla fler medlemmar kommer du att ha möjlighet att göra det i ett senare steg."
+  );
+
   if (params.has("event") && params.get("event") === validEvent) {
     console.log("Valid event detected and stored:", params.get("event"));
     sessionStorage.setItem("validEvent", validEvent);
 
-    // Run functions specific to the initial event page
     runInitialEventFunctions();
   } else {
     console.log("No event parameter in URL or invalid event.");
   }
 
-  // Run functions that need to check sessionStorage on all pages
   checkSessionAndRunPageSpecificFunctions();
 
   // ======================= Function Definitions =======================
 
-  // Functions specific to the initial event page
   function runInitialEventFunctions() {
     // KÖRS ENDAST OM DET ÄR RÄTT EVENT NR
     // FÖRSTA SIDAN
 
     changeButtonValue("Ge en gåva");
-    /*  changeButtonTopNav("Tecknat"); */
 
     changeButtonConfirmValue("Donerat");
 
@@ -37,14 +35,11 @@ document.addEventListener("DOMContentLoaded", function () {
     changeATagInTerms("(Visa)", "(visa)");
 
     // ANDRA SIDAN I FLÖDET - PARTTAKER SELECT
-    /*  changePartakerTitle("Donator"); */
 
     changePartakerParagraphText(
       "Det måste finnas en fysisk person som är kontaktperson och ansvarig för donationen."
     );
 
-    /* changePartakerTitleThirdPage("Donator");
-     */
     updateCwData();
 
     changePartakerRegFormTitle("Gåvobelopp");
@@ -53,11 +48,6 @@ document.addEventListener("DOMContentLoaded", function () {
       "Eventuella upplysningar i samband med bokningen",
       "Eventuella upplysningar i samband med donationen"
     );
-
-    /*  changeDivTextByContent(
-      "Skicka kopia av bokningsinformationen till annan e-postadress",
-      "Skicka kopia av information om donationen till annan e-postadress"
-    ); */
 
     changeDivTextByContent(
       "Skicka kopia av bokningsinformationen till annan e-postadress",
@@ -71,18 +61,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // OVANFÖR FÄRDIGA FUNCTIONER
 
-  // Functions to check sessionStorage and apply changes on specific pages
+  // Funkioner som körs endast om eventet är rätt nummer, sidor finns på alla formulär
   function checkSessionAndRunPageSpecificFunctions() {
-    // Pages where we need to check for the stored event
     const validPages = ["7000", "9100"];
     const currentPage = params.get("p");
 
-    // Check if we are on a valid page (p=7000 or p=9100)
     if (validPages.includes(currentPage)) {
-      // Retrieve the event from sessionStorage
       const storedEvent = sessionStorage.getItem("validEvent");
 
-      // If the event is stored and matches the valid event, run the specific code
       if (storedEvent === validEvent) {
         console.log(
           "Valid event detected in sessionStorage on page",
@@ -125,7 +111,6 @@ document.addEventListener("DOMContentLoaded", function () {
       ".cwControlAreaTop .cwButton.cwShopNavCart"
     );
 
-    // Update buttonConfirm if it exists
     if (buttonConfirm) {
       buttonConfirm.value = newValue;
     } else {
@@ -152,18 +137,6 @@ document.addEventListener("DOMContentLoaded", function () {
       console.log("Knappar hittades inte");
     }
   }
-  /* 
-  function changeButtonTopNav(newValue) {
-    var buttonConfirm = document.querySelector(
-      ".cwShopPageEventInfo .cwControlAreaTop .cwButton.cwShopNavCart"
-    );
-
-    if (buttonConfirm) {
-      buttonConfirm.value = newValue;
-    } else {
-      console.log("Knappar hittades inte");
-    }
-  } */
 
   function changeLabelByFor(forValue, newLabelText) {
     var label = document.querySelector(
@@ -189,18 +162,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // ============ ANDRA SIDAN I FLÖDET - PARTTAKER SELECT
 
-  /* function changePartakerTitle(newTitle) {
-    var paragraph = document.querySelector(
-      "#cwShopForm.cwShopPagePartaker1Select .cwShopPageName"
-    );
-
-    if (paragraph) {
-      paragraph.innerText = newTitle;
-    } else {
-      console.log("Rubrik för deltagare hittades inte");
-    }
-  } */
-
   function changePartakerParagraphText(newText) {
     var paragraph = document.querySelector(
       "#cwShopForm.cwShopPagePartaker1Select .cwInputArea p"
@@ -215,20 +176,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // ============ ANDRA SIDAN I FLÖDET - SLUT
 
-  // TREDJE SIDAN
-
-  /*   function changePartakerTitleThirdPage(newTitle) {
-    var paragraph = document.querySelector(
-      ".cwShopPagePartaker1Find .cwFormCenter .cwShopPageName"
-    );
-
-    if (paragraph) {
-      paragraph.innerText = newTitle;
-    } else {
-      console.log("Rubrik för deltagare hittades inte");
-    }
-  } */
-
   // FÖR FLER SIDOR SIDOPANELEN
 
   function updateCwData() {
@@ -239,7 +186,7 @@ document.addEventListener("DOMContentLoaded", function () {
         item.textContent = "Gåvoobjekt";
       }
 
-      // byt "Aktivitet/artikel" mot "Prenumeration"
+      // byt "Aktivitet/artikel" mot "valfri text"
       if (item.textContent.includes("Arrangör")) {
         item.textContent = "Mottagare";
       }
@@ -266,30 +213,6 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   // KONTROLLERA BEKRÄFTA
-  /*  function changeControlAndConfirmButtonValue(newValue) {
-    var buttons = document.querySelectorAll(
-      ".cwShopPageAddCommentAndConfirm .cwControlAreaTop .cwButton.cwShopNavCart"
-    );
-
-    if (buttons.length > 0) {
-      buttons.forEach(function (button) {
-        button.value = newValue;
-      });
-    } else {
-      console.log("Knappar hittades inte");
-    }
-  } */
-
-  /*  function hideContinueShoppingButton() {
-    const button = document.querySelector('input[name="continue_shopping"]');
-    if (button) {
-      button.style.display = "none";
-    }
-  } */
-
-  // Call the function to hide the button
-
-  /*   changeControlAndConfirmButtonValue("Tecknat"); */
 
   function changeErrorMessage(newText) {
     const errorElement = document.querySelector(".cwErrMsg");
@@ -300,7 +223,7 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   function changeDivTextByContent(currentText, newText) {
-    var divs = document.querySelectorAll(".cwInputArea div"); // Target divs inside .cwInputArea
+    var divs = document.querySelectorAll(".cwInputArea div");
 
     divs.forEach(function (div) {
       if (div.innerText.trim() === currentText) {
@@ -385,4 +308,18 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     });
   }
+
+  function changeParagraphTextByContent(currentText, newText) {
+    var paragraphs = document.querySelectorAll("#cwShopForm .cwInputArea > p");
+    paragraphs.forEach(function (paragraph) {
+      if (paragraph.innerText.trim() === currentText) {
+        paragraph.innerText = newText;
+      }
+    });
+  }
+
+  changeParagraphTextByContent(
+    "Nytt eller förnyat medlemskap söks för en individ i taget. Vill du anmäla fler medlemmar kommer du att ha möjlighet att göra det i ett senare steg.",
+    "Nytt eller förnyat medlemskap anmäls för en individ i taget. Vill du anmäla fler medlemmar kommer du att ha möjlighet att göra det i ett senare steg."
+  );
 });
