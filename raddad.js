@@ -63,7 +63,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Funkioner som körs endast om eventet är rätt nummer, sidor finns på alla formulär
   function checkSessionAndRunPageSpecificFunctions() {
-    const validPages = ["7000", "9100"];
+    const validPages = ["7000", "9100", "4210"];
     const currentPage = params.get("p");
 
     if (validPages.includes(currentPage)) {
@@ -95,6 +95,10 @@ document.addEventListener("DOMContentLoaded", function () {
         changeCancelAbortParagraphTextByContent(
           "Observera att du kommer att förbli inloggad även efter att du lämnat bokningen.",
           ""
+        );
+        changeParagraphTextByContent(
+          "Efterfrågade personuppgifter behövs för att kunna bedriva verksamheten på ett effektivt sätt. Uppgifterna är endast tillgängliga för inloggade administratörer och kommer inte att delges någon obehörig.",
+          "Efterfrågade uppgifter behövs för att vi fortlöpande ska kunna informera dig om vår verksamhet. Uppgifterna är endast tillgängliga för inloggade administratörer och kommer inte att delges någon obehörig"
         );
       } else {
         console.log("No valid event found in sessionStorage on this page.");
@@ -321,9 +325,5 @@ document.addEventListener("DOMContentLoaded", function () {
   changeParagraphTextByContent(
     "Nytt eller förnyat medlemskap söks för en individ i taget. Vill du anmäla fler medlemmar kommer du att ha möjlighet att göra det i ett senare steg.",
     "Nytt eller förnyat medlemskap anmäls för en individ i taget. Vill du anmäla fler medlemmar kommer du att ha möjlighet att göra det i ett senare steg."
-  );
-  changeParagraphTextByContent(
-    "Efterfrågade personuppgifter behövs för att kunna bedriva verksamheten på ett effektivt sätt. Uppgifterna är endast tillgängliga för inloggade administratörer och kommer inte att delges någon obehörig.",
-    "Efterfrågade uppgifter behövs för att vi fortlöpande ska kunna informera dig om vår verksamhet. Uppgifterna är endast tillgängliga för inloggade administratörer och kommer inte att delges någon obehörig"
   );
 });
