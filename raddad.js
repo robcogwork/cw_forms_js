@@ -3,15 +3,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
   const params = new URLSearchParams(window.location.search);
 
-  changeParagraphTextByContent(
-    "Nytt eller förnyat medlemskap söks för en individ i taget. Vill du anmäla fler medlemmar kommer du att ha möjlighet att göra det i ett senare steg.",
-    "Nytt eller förnyat medlemskap anmäls för en individ i taget. Vill du anmäla fler medlemmar kommer du att ha möjlighet att göra det i ett senare steg."
-  );
-  changeParagraphTextByContent(
-    "Efterfrågade personuppgifter behövs för att kunna bedriva verksamheten på ett effektivt sätt. Uppgifterna är endast tillgängliga för inloggade administratörer och kommer inte att delges någon obehörig.",
-    "Efterfrågade uppgifter behövs för att vi fortlöpande ska kunna informera dig om vår verksamhet. Uppgifterna är endast tillgängliga för inloggade administratörer och kommer inte att delges någon obehörig"
-  );
-
   if (params.has("event") && params.get("event") === validEvent) {
     console.log("Valid event detected and stored:", params.get("event"));
     sessionStorage.setItem("validEvent", validEvent);
@@ -325,5 +316,10 @@ document.addEventListener("DOMContentLoaded", function () {
   changeParagraphTextByContent(
     "Nytt eller förnyat medlemskap söks för en individ i taget. Vill du anmäla fler medlemmar kommer du att ha möjlighet att göra det i ett senare steg.",
     "Nytt eller förnyat medlemskap anmäls för en individ i taget. Vill du anmäla fler medlemmar kommer du att ha möjlighet att göra det i ett senare steg."
+  );
+
+  changeParagraphTextByContent(
+    "Efterfrågade personuppgifter behövs för att kunna bedriva verksamheten på ett effektivt sätt. Uppgifterna är endast tillgängliga för inloggade administratörer och kommer inte att delges någon obehörig.",
+    "Efterfrågade uppgifter behövs för att vi fortlöpande ska kunna informera dig om vår verksamhet. Uppgifterna är endast tillgängliga för inloggade administratörer och kommer inte att delges någon obehörig"
   );
 });
