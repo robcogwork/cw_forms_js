@@ -86,7 +86,7 @@ document.addEventListener("DOMContentLoaded", function () {
         changeBookingConfirmationTitle("Tecknat");
         changeShoppingCardText(
           "Antas då begärd avgift betalas",
-          "Premunationer börjar när betalning har mottagits."
+          "Prenumerationen börjar när betalning har mottagits."
         );
         changePaySubmitButtonText();
         changeParagraphTextAnyPage(
