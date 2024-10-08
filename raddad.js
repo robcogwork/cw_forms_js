@@ -322,4 +322,8 @@ document.addEventListener("DOMContentLoaded", function () {
     "Nytt eller förnyat medlemskap söks för en individ i taget. Vill du anmäla fler medlemmar kommer du att ha möjlighet att göra det i ett senare steg.",
     "Nytt eller förnyat medlemskap anmäls för en individ i taget. Vill du anmäla fler medlemmar kommer du att ha möjlighet att göra det i ett senare steg."
   );
+  changeParagraphTextByContent(
+    "Efterfrågade personuppgifter behövs för att kunna bedriva verksamheten på ett effektivt sätt. Uppgifterna är endast tillgängliga för inloggade administratörer och kommer inte att delges någon obehörig.",
+    "Efterfrågade uppgifter behövs för att vi fortlöpande ska kunna informera dig om vår verksamhet."
+  );
 });
