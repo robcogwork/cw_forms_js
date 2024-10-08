@@ -324,6 +324,6 @@ document.addEventListener("DOMContentLoaded", function () {
   );
   changeParagraphTextByContent(
     "Efterfrågade personuppgifter behövs för att kunna bedriva verksamheten på ett effektivt sätt. Uppgifterna är endast tillgängliga för inloggade administratörer och kommer inte att delges någon obehörig.",
-    "Efterfrågade uppgifter behövs för att vi fortlöpande ska kunna informera dig om vår verksamhet."
+    "Efterfrågade uppgifter behövs för att vi fortlöpande ska kunna informera dig om vår verksamhet. Uppgifterna är endast tillgängliga för inloggade administratörer och kommer inte att delges någon obehörig"
   );
 });
