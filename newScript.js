@@ -67,7 +67,7 @@ document.addEventListener("DOMContentLoaded", function () {
   // Functions to check sessionStorage and apply changes on specific pages
   function checkSessionAndRunPageSpecificFunctions() {
     // Pages where we need to check for the stored event
-    const validPages = ["7000", "9100", "8040"];
+    const validPages = ["7000", "9100", "8040", "9900"];
     const currentPage = params.get("p");
 
     // Check if we are on a valid page (p=7000 or p=9100)
@@ -89,6 +89,15 @@ document.addEventListener("DOMContentLoaded", function () {
           "Premunationer börjar när betalning har mottagits."
         );
         changePaySubmitButtonText();
+        changeParagraphTextAnyPage(
+          "Du har nu avslutat besöket i webbshoppen och kan fortsätta surfa som vanligt.",
+          "Du har nu avslutat besöket."
+        );
+        hideListItemIfTextMatches("Medlemsansökan till Svensk filosofi");
+        hideListItemIfTextMatches(
+          "Aktiviteter och artiklar från Svensk filosofi"
+        );
+        hideListItemIfTextMatches("Mina Aktiviteter");
       } else {
         console.log("No valid event found in sessionStorage on this page.");
       }
@@ -369,5 +378,24 @@ document.addEventListener("DOMContentLoaded", function () {
     if (button && button.textContent.trim() === "Visa bokningsöversikt") {
       button.textContent = "Visa prenumerationsöversikt";
     }
+  }
+
+  // Sidan avsluta p= 9900
+  function changeParagraphTextAnyPage(currentText, newText) {
+    var paragraphs = document.querySelectorAll("#cwShopForm .cwInputArea > p");
+    paragraphs.forEach(function (paragraph) {
+      if (paragraph.innerText.trim() === currentText) {
+        paragraph.innerText = newText;
+      }
+    });
+  }
+
+  function hideListItemIfTextMatches(targetText) {
+    var listItems = document.querySelectorAll("#cwShopForm .cwInputArea li a");
+    listItems.forEach(function (anchor) {
+      if (anchor.innerText.trim() === targetText) {
+        anchor.parentElement.style.display = "none"; // Hide the parent <li>
+      }
+    });
   }
 });
